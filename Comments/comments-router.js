@@ -33,9 +33,14 @@ router.get('./:id/comments', ( req,res) =>{
          } else {
             res.status(404).json({
                message: `The post with the specified ID does not exist`
-            })
+            });
          }
       })
-})
+      .catch(err => {
+         res.status(500).json({
+            errorMessage: `The post could not be removed`, err
+         });
+      });
+});
 
 module.exports = router;
