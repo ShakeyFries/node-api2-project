@@ -5,7 +5,7 @@ const db = require('../data/db');
 const router = express.Router();
 
 router.post('/:id/comments', ( req,res ) => {
-   const info = req.body;
+   const info = req.params;
 
    db.insertComment(comment)
       .then(go =>{
@@ -23,10 +23,10 @@ router.post('/:id/comments', ( req,res ) => {
       });
 });
 
-router.get('./:id/comments', ( req,res) =>{
+router.get('/api/comments', ( req,res) =>{
    const {id} = req.params;
 
-   db.findById(id)
+   db.findPostComments(postId)
       .then(go => {
          if(go) {
             res.status(200).json(go);
